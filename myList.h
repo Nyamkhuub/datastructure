@@ -62,7 +62,7 @@ List<T> *add(T value, List<T> *head)
 }
 //listed utga hasaj baigaa uildel
 _TEMP_
-void remove(T value, List<T> *head)
+List<T> *remove(T value, List<T> *head)
 {
 	List<T> *temp = head, *pre = head;
 	if(!isNull(head))
@@ -72,10 +72,16 @@ void remove(T value, List<T> *head)
 		{
 			if(temp->value == value)
 			{
+				del = true;
+				if(temp == head) 
+				{
+					delete head;
+					head = NULL;
+					break;
+				}
 				List<T> *rr = temp->next;
 				pre->next = rr;
 				delete temp;
-				del = true;
 				break;
 			}
 			pre = temp;
@@ -94,6 +100,7 @@ void remove(T value, List<T> *head)
 	{
 		print("List empty!!");
 	}
+	return head;
 }
 _TEMP_
 void printAll(List<T> *head) 
